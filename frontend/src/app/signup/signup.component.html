@@ -1,0 +1,99 @@
+<div class="container"  [ngClass]="{'right-panel-active': exchange}" id="container">
+    <div  class="form-container sign-up-container">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
+            <h1>Create Account</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your email for registration</span>
+            <input type="text" formControlName="firstname" placeholder="FirstName" />
+            
+            <div *ngIf="submitted && builder.firstname.errors">
+                <div *ngIf="builder.firstname.errors.required">Username is required</div>
+            </div> 
+            
+            <input type="text" formControlName="lastname" placeholder="LastName" />
+            
+            <div *ngIf="submitted && builder.lastname.errors">
+                <div *ngIf="builder.lastname.errors.required">Username is required</div>
+            </div>
+ 
+            <input type="email" formControlName="email" placeholder="Email" />
+
+             <div *ngIf="submitted && builder.email.errors">
+                <div *ngIf="builder.email.errors.required">email is required</div>
+                <div *ngIf="builder.email.errors.email">email id is not valid</div>
+            </div> 
+
+            <input type="password" formControlName="password" placeholder="Password" />
+
+            <div *ngIf="submitted && builder.password.errors">
+
+                    <div *ngIf="builder.password.errors.required">password is required</div>
+                <div *ngIf="builder.password.errors.pattern">Password must contain atleast 6 character or digit and must end with special character</div>
+            </div> 
+
+            <input type="password" placeholder="Confirm Password" />
+
+            
+
+            <button id="signUp1" style="margin-top:3vw">Sign Up</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form [formGroup]="loginForm">
+            <h1>Sign in</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your account</span>
+            <input type="email" placeholder="Email" formControlName="l_email"/>
+
+            <div *ngIf="submitted && login.l_email.errors">
+                    <div *ngIf="login.l_email.errors.required">email id required</div>
+                <div *ngIf="login.l_email.errors.email">email id is not valid</div>
+            </div>
+            <input type="password" placeholder="Password" formControlName="p_word"/>
+
+            <div *ngIf="submitted && login.p_word.errors">
+                    <div *ngIf="login.p_word.errors.required">password is required</div>
+                <div *ngIf="login.p_word.errors.pattern">Password must contain atleast 6 character or digit and must end with special character</div>
+            </div>
+            <a href="#">Forgot your password?</a>
+            <button id="signIn" (click)="onSubmitLogin()">Sign In</button>
+            
+            <a href="#">create account</a>
+            <button id="signUp" (click)="onChange()">Sign Up</button>	
+            
+        </form>
+    </div>
+    
+</div>
+
+
+
+<!--<script>
+	const signUpButton = document.getElementById('signUp');
+	const signUpButton1 = document.getElementById('signUp1');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
+
+signUpButton1.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+
+	
+});
+
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+});
+	
+</script>-->

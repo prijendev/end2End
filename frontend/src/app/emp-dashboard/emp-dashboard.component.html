@@ -1,0 +1,14 @@
+<div class="container-fluid" >
+    <h3 class="mytitle" >List of available jobs</h3>
+    <div class="card" *ngFor="let cl of jobs">
+  
+        <div class="center">
+        <h1>{{cl.title}}</h1>
+        <p><b>type:</b>{{ cl.type }}</p>
+        <p>{{ cl.description }}</p>
+        <h5>{{ cl.skills }}</h5>
+      <h5>{{ cl.budget }}</h5>
+    </div>
+</div>
+  
+  

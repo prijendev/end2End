@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {first} from 'rxjs/operators'
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -72,7 +73,7 @@ export class SignupComponent implements OnInit
     this.service.register(this.registerForm.value).
     pipe(first()).
     subscribe(data=>{
-      console.log("success");
+      console.log(data);
     },
     error=>{
       console.log("error");
@@ -91,6 +92,7 @@ export class SignupComponent implements OnInit
     this.authService.login(this.login.l_email.value,this.login.p_word.value)
     .pipe(first())
     .subscribe(data=>{
+      console.log(data);
       //navigate
     },error =>{
       //alert message;

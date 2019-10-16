@@ -1,13 +1,17 @@
 var express = require('express');
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var session = require('express-session');
 var Client = require('./models/Client');
+var Project = require('./models/Project');
 var jwt = require('jsonwebtoken');
 var parser = require('body-parser');
-
+var Bid = require('./models/Bid')
 var app = express();
 
 app.use(parser.json());
+
+
+
 app.use(function (req, res, next) {
     //Enabling CORS
     res.append("Access-Control-Allow-Origin", "*");
@@ -16,6 +20,7 @@ app.use(function (req, res, next) {
    res.append('Access-Control-Allow-Headers','Content-type');
    next();
     }); 
+
 app.use(parser.urlencoded({ extended: false }));
 
 var db = mongoose.connect('mongodb://localhost:27017/client',function(err,res)
@@ -29,11 +34,10 @@ var db = mongoose.connect('mongodb://localhost:27017/client',function(err,res)
         console.log("connectin has been established with mongodb");
     }
 });
+
 app.set('port',process.env.port || 3000);
 
-app.get('/',(req,res)=>{
-    res.send("hellow node");
-});
+
 
 app.post('/register',(req,res)=>{
     
@@ -88,9 +92,12 @@ app.post('/login',(req,res)=>
             {
                 
                 jwt.sign({client},'secretkey',{expiresIn:'7d'},(err,token)=>{
+
+
                     res.json({
-                        token:token
+                        token,client
                         });
+                        
                 });
              
                 console.log("matched");
@@ -110,9 +117,75 @@ app.post('/login',(req,res)=>
 
     
 });
+app.post('/project',auth,(req,res)=>
+{
+
+});
+function auth (req,res,next)
+{
+    const token=req.header('token');
+    console.log(token);
+    if(!token)
+    {
+        return res.status(401).send('access denied');
+    }
+    try{
+        const verified = jwt.verify(token,'secretkey');
+        req.client=verified;
+        res.status(200).send('valid token');
+    }
+    catch(err)
+    {
+
+        res.status(400).send(err);
+    }
+}
 
 
 
+
+app.post('/project',(req,res)=>{
+
+    var project = new Project(req.body);
+
+    let ts = Date.now();
+
+    let date_ob = new Date(ts);
+    project.date=date_ob;
+
+    project.save((err,result)=>{
+        if(err)
+        console.log("err");
+        else
+        {
+            res.json({
+                project_id:project._id
+               });
+        }
+    });
+});
+
+app.post('/bid',(req,res)=>{
+
+    var bid = new Bid(req.body);
+
+    let ts = Date.now();
+
+    let date_ob = new Date(ts);
+    bid.date=date_ob;
+
+console.log(date_ob);
+    bid.save((err,result)=>{
+        if(err)
+        console.log("err");
+        else
+        {
+            res.json({
+                bid_id:bid._id
+               });
+        }
+    });
+});
 
 app.listen(app.get('port'),function(req,res){
     console.log("Server running on port ",app.get('port'));

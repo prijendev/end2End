@@ -7,8 +7,10 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
-import { SignupComponent } from './signup/signup.component';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+
+import { ProjectViewComponent } from './project-view/project-view.component';
+import { EmpDashboardComponent } from './emp-dashboard/emp-dashboard.component'
 
 @NgModule({
   declarations: [
@@ -16,7 +18,11 @@ import {HttpClientModule} from '@angular/common/http'
     FooterComponent,
     NavbarComponent,
     HomeComponent,
-    SignupComponent
+    routingComponent,
+   
+    ProjectViewComponent,
+   
+    EmpDashboardComponent
   ],
   imports: [
     BrowserModule,

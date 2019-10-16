@@ -11,7 +11,7 @@ export class AuthenticateService {
 
   private clientsubject : BehaviorSubject<Client>;
   private observer : Observable<Client>;
-
+  public data: any;
   constructor(private http:HttpClient)
    {
       this.clientsubject=new BehaviorSubject<Client>(JSON.parse(localStorage.getItem('currentClient')));
@@ -28,11 +28,21 @@ export class AuthenticateService {
    {
      return this.http.post<any>(`http://localhost:3000/login`,{email,password})
      .pipe(map(client=>{
-       if(client && client.token)
+      if(client && client.token)
        {
-        localStorage.setItem('currentClient', JSON.stringify(client));
+        localStorage.setItem('currentClient', JSON.stringify(client.client));
+        localStorage.setItem('token', JSON.stringify(client.token));
+       
+      
+        console.log(localStorage.getItem('token'));
+        
         this.clientsubject.next(client);
-       }
+       
+        this.data=JSON.stringify(client.client);
+      return this.data;
+      }
+      
+      return "not get any data";
      }))
      
    }

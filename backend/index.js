@@ -124,6 +124,7 @@ function auth (req,res,next)
 {
     const token=req.body.token;
     console.log(token);
+    
     if(!token)
     {
         return res.status(401).send('access denied');

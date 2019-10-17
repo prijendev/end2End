@@ -17,9 +17,9 @@ export class ProjectViewComponent implements OnInit
   p_data:Project
   constructor(private prjservice:ProjectService)
    {
-     console.log("5da70e5c37a4d52f1ce09584");
+     console.log(prjservice.id);
      
-    this.prjservice.getData("5da70e5c37a4d52f1ce09584")
+    this.prjservice.getData(prjservice.id)
     .pipe(first())
     .subscribe(data=>{
       this.p_data=data

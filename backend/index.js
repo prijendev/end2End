@@ -91,7 +91,7 @@ app.post('/login',(req,res)=>
             if(client.password == password)
             {
                 
-                jwt.sign({client},'secretkey',{expiresIn:'7d'},(err,token)=>{
+                jwt.sign({client},'secretkey',{expiresIn:'1h'},(err,token)=>{
 
 
                     res.json({
@@ -122,21 +122,26 @@ app.post('/login',(req,res)=>
 
 function auth (req,res,next)
 {
-    const token=req.header('token');
+    const token=req.body.token;
     console.log(token);
     if(!token)
     {
         return res.status(401).send('access denied');
     }
-    try{
+    try
+    {
         const verified = jwt.verify(token,'secretkey');
         req.client=verified;
-        res.status(200).send('valid token');
+        
+        console.log('valid token');
+        next()
     }
     catch(err)
     {
-
-        res.status(400).send(err);
+        console.log('Invalid token');
+        res.json({
+            "status":"not"
+           });
     }
 }
 
@@ -163,6 +168,38 @@ app.post('/project',(req,res)=>{
         }
     });
 });
+
+
+app.post('/prj_all',auth,(req,res)=>
+{
+    var token = req.body.token;
+    const decode = jwt.decode(token,'secretkey');
+
+    
+    var client_id = decode.client._id;
+   
+    console.log(client_id);
+    
+   Project.find({client_id:client_id}).exec(function(err,project)
+   {
+       if(err)
+       {
+        res.json({
+            "hiii":"errr"
+        });
+       }
+       else
+       {
+        console.log(project);
+        res.json({
+            project
+        });
+       }
+   })
+
+    
+})
+
 
 app.post('/prj_data',(req,res)=>
 {

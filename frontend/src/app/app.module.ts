@@ -10,7 +10,8 @@ import { HomeComponent } from './home/home.component';
 import {HttpClientModule} from '@angular/common/http';
 
 import { ProjectViewComponent } from './project-view/project-view.component';
-import { EmpDashboardComponent } from './emp-dashboard/emp-dashboard.component'
+import { EmpDashboardComponent } from './emp-dashboard/emp-dashboard.component';
+import { PubDashboardComponent } from './pub-dashboard/pub-dashboard.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { EmpDashboardComponent } from './emp-dashboard/emp-dashboard.component'
    
     ProjectViewComponent,
    
-    EmpDashboardComponent
+    EmpDashboardComponent,
+   
+    PubDashboardComponent
   ],
   imports: [
     BrowserModule,

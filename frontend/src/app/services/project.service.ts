@@ -8,8 +8,10 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ProjectService {
+  
 
   public data:any
+  public id:any
   private proj : BehaviorSubject<Project>;
   constructor(private http:HttpClient)
    {
@@ -34,6 +36,26 @@ export class ProjectService {
       return "nothing";
      }));
 
+     
     
    }
+
+   getAllData(tk:string)
+  {
+    var token=JSON.parse(tk);
+    return this.http.post<any>(`http://localhost:3000/prj_all`,{token})
+      .pipe(map(project=>{
+      if(project)
+      {
+
+       localStorage.setItem('project', JSON.stringify(project.project));
+       //console.log(localStorage.getItem('token'));
+      
+       this.data=project.project;
+      return this.data;
+      
+      }
+      return "nothing";
+     }));
+  }
   }

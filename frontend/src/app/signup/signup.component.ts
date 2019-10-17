@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {first} from 'rxjs/operators'
 
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -19,16 +20,22 @@ export class SignupComponent implements OnInit
   submitted=false;
   exchange=false;
   
+  returnUrl: string;
 
   constructor(private formBuilder: FormBuilder,
               private service:RegisterService,
-              private authService:AuthenticateService) 
+              private route: ActivatedRoute,
+              
+              private authService:AuthenticateService,
+              private router:Router) 
   {
 
-    if(this.authService.currentClient)
+   /* if(this.authService.currentClient)
     {
-
-    }
+      if (this.authService.currentClient) { 
+       this.router.navigate(['/']);
+    } */
+    //}
    }
 
   ngOnInit()
@@ -45,7 +52,7 @@ export class SignupComponent implements OnInit
       p_word:['',[Validators.required, Validators.pattern('^([a-z A-Z 0-9]{7,12}[@ # $ % ^ & * -]{1})$')]]
     });
 
-
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
     
   }
@@ -94,8 +101,11 @@ export class SignupComponent implements OnInit
     .subscribe(data=>{
       console.log(data);
       //navigate
+      console.log(data);
+      this.router.navigate([this.returnUrl]);
     },error =>{
       //alert message;
+     
     });
     
     

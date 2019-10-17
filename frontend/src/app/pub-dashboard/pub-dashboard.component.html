@@ -1,0 +1,62 @@
+<div class="row">
+
+    <!--Column 1-->
+    <div class="col-lg-3">
+            <div class="card" style="padding:20px 20px 5px 20px;margin-top:20px">
+                    <div class="panel panel-warning">
+                      <div class="panel-heading">Your skills</div>
+                      <div class="panel-body"><h4></h4></div>
+                    </div>
+                    
+                    <div class="panel panel-warning">
+                      <div class="panel-heading">Ratings</div>
+                      <div class="panel-body">Nothing to show</div>
+                    </div>
+                </div>
+    </div>>
+        <div class="col-lg-7">
+    
+                
+                        <div class="card"  style="padding:20px 20px 5px 20px;margin-top:20px">
+                                <div class="panel panel-primary">
+                                  <div class="panel-heading"><h3>Your project</h3></div>
+                                </div>
+                                <div class="panel panel-primary" *ngFor="let item of project_list ;index as i;">
+                                  <div class="panel-heading">Projecy {{i}}<span style="float: right;">{{item.date | date}}</span></div>
+                                  
+                                  <div class="panel-body"><h4>{{item.project_name}}<span style="color:gray ;padding:10vh;">{{item.skilss}}</span>
+                                    <button (click) = "onProjectClick(item._id)" style="float: right ;" class="btn btn-info">
+                                      <span class="glyphicon glyphicon-envelope"></span>  view</button></h4></div>
+                                </div>
+                                
+                                
+                        </div>
+        </div>
+
+
+        <div class="col-lg-2">
+
+                <!--Main profile card-->
+                        <div class="card" style="padding:20px 20px 5px 20px;margin-top:20px">
+                            
+                           
+                            <a href="sendMessage.php" class="btn btn-info"><span class="glyphicon glyphicon-envelope"></span>  Post Project</a>
+                            <p></p>
+                        </div>
+
+                        <div class="card" style="padding:20px 20px 5px 20px;margin-top:20px">
+                          <div class="panel panel-primary">
+                            <div class="panel-heading">History</div>
+                          </div>
+                          <div class="panel panel-primary">
+                            <div class="panel-heading">Projct 4</div>
+                            <div class="panel-body">18/01/2018</div>
+                          </div>
+                          
+                          <div class="panel panel-primary">
+                            <div class="panel-heading">Project 5</div>
+                            <div class="panel-body">18/01/2018</div>
+                          </div>
+                      </div>
+        </div>
+</div>

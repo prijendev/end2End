@@ -21,9 +21,9 @@ app.use(function (req, res, next) {
    next();
     }); 
 
-app.use(parser.urlencoded({ extended: false }));
+ app.use(parser.urlencoded({ extended: false }));
 
-var db = mongoose.connect('mongodb://localhost:27017/client',function(err,res)
+ var db = mongoose.connect('mongodb://localhost:27017/client',function(err,res)
 {
     if(err)
     {
@@ -33,7 +33,7 @@ var db = mongoose.connect('mongodb://localhost:27017/client',function(err,res)
     {
         console.log("connectin has been established with mongodb");
     }
-});
+}); 
 
 app.set('port',process.env.port || 3000);
 
@@ -117,10 +117,9 @@ app.post('/login',(req,res)=>
 
     
 });
-app.post('/project',auth,(req,res)=>
-{
 
-});
+
+
 function auth (req,res,next)
 {
     const token=req.header('token');
@@ -165,6 +164,36 @@ app.post('/project',(req,res)=>{
     });
 });
 
+app.post('/prj_data',(req,res)=>
+{
+    var prj_id = req.body.id;
+
+    console.log(prj_id);
+
+    Project.findOne({ _id : prj_id }).exec(function(err,project)
+    {
+        if (err) 
+        {
+            console.log("Error");
+        }
+        else if (!project) 
+        {
+            
+            console.log("project does not exist");
+            console.log(err);
+        }
+        else
+        {
+             res.json
+             ({
+                 project
+            });
+         
+         }
+          
+    });
+
+})
 app.post('/bid',(req,res)=>{
 
     var bid = new Bid(req.body);
@@ -186,7 +215,7 @@ console.log(date_ob);
         }
     });
 });
-
+ 
 app.listen(app.get('port'),function(req,res){
     console.log("Server running on port ",app.get('port'));
 });

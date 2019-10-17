@@ -1,6 +1,8 @@
+import { Project } from './../models/project';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,24 +10,30 @@ import { map } from 'rxjs/operators';
 export class ProjectService {
 
   public data:any
+  private proj : BehaviorSubject<Project>;
   constructor(private http:HttpClient)
-   { }
-
-   getData()
    {
-     return this.http.post<any>(`http://localhost:3000/project`,{})
-     .pipe(map(project=>{
+    //this.proj = new BehaviorSubject<Project>(JSON.parse(localStorage.getItem('project')));
+    }
+
+   getData(id:String)
+   {
+     console.log(id);
+
+     return this.http.post<any>(`http://localhost:3000/prj_data`,{id})
+      .pipe(map(project=>{
       if(project)
       {
-       localStorage.setItem('project', JSON.stringify(project.client));
-       console.log(localStorage.getItem('token'));
+       localStorage.setItem('project', JSON.stringify(project.project));
+       //console.log(localStorage.getItem('token'));
       
-       this.data=JSON.stringify(project.project);
+       this.data=project.project;
       return this.data;
       
       }
-     }))
+      return "nothing";
+     }));
 
-     return "nothing";
+    
    }
   }

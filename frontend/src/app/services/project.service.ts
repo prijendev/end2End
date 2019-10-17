@@ -33,7 +33,8 @@ export class ProjectService {
       return this.data;
       
       }
-      return "nothing";
+
+      
      }));
 
      
@@ -55,6 +56,11 @@ export class ProjectService {
       return this.data;
       
       }
+      else
+      {
+        localStorage.removeItem('token');
+      }
+      
       return "nothing";
      }));
   }

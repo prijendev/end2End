@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from '../models/project';
 import { ProjectService } from '../services/project.service';
 import { first } from 'rxjs/operators';
+import { isDefined } from '@angular/compiler/src/util';
+
 @Component({
   selector: 'app-pub-dashboard',
   templateUrl: './pub-dashboard.component.html',
@@ -19,8 +21,15 @@ export class PubDashboardComponent implements OnInit {
     this.prjservice.getAllData(localStorage.getItem('token'))
     .pipe(first())
     .subscribe(data=>{
-      this.project_list=data
-      console.log(this.project_list);
+
+      if(data)
+      {
+        this.project_list=data
+        console.log(this.project_list);
+      }
+      else
+      this.router.navigate(['/signup']);
+      
 
       
     },error =>{

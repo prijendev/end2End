@@ -6,6 +6,7 @@ var Project = require('./models/Project');
 var jwt = require('jsonwebtoken');
 var parser = require('body-parser');
 var Bid = require('./models/Bid')
+var alert = require('alert-node');
 var app = express();
 
 app.use(parser.json());
@@ -83,6 +84,10 @@ app.post('/login',(req,res)=>
             
             console.log("cliet does not exist");
             console.log(err);
+            res.json({
+                "message":'User does not exist'
+               });
+            
         }
         else
         {
@@ -106,7 +111,7 @@ app.post('/login',(req,res)=>
             else
             {
                 res.json({
-                       password:'does not match'
+                       "message":'password is wrong'
                       });
                   
             }

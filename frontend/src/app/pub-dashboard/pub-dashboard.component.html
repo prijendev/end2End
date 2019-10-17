@@ -22,7 +22,7 @@
                                   <div class="panel-heading"><h3>Your project</h3></div>
                                 </div>
                                 <div class="panel panel-primary" *ngFor="let item of project_list ;index as i;">
-                                  <div class="panel-heading">Projecy {{i}}<span style="float: right;">{{item.date | date}}</span></div>
+                                  <div class="panel-heading">Project {{i}}<span style="float: right;">{{item.date | date}}</span></div>
                                   
                                   <div class="panel-body"><h4>{{item.project_name}}<span style="color:gray ;padding:10vh;">{{item.skilss}}</span>
                                     <button (click) = "onProjectClick(item._id)" style="float: right ;" class="btn btn-info">

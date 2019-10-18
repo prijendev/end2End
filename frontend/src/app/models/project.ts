@@ -8,4 +8,5 @@ export class Project
       date  : Date
       budget : Number
       duration  : Number
+      bidtime:Number
 }

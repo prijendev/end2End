@@ -2,13 +2,14 @@ var moongose = require('mongoose')
 
 var schema = moongose.Schema(
 {
-      client_id  : {type:String,require:true},
-      project_name  : {type:String,require:true},
-      skills  : {type:String,require:true},
-      requirement : {type:String,require:true},
-      date  : {type:Date,require:true},
-      budget : {type:Number,require:true},
-      duration  : {type:Number,require:true},
+      client_id  : {type:String},
+      project_name  : {type:String},
+      skills  : {type:String},
+      requirement : {type:String},
+      date  : {type:Date},
+      budget : {type:Number},
+      duration  : {type:Number},
+      bidtime:{type:Number}
     }
 )
 

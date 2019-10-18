@@ -31,6 +31,8 @@ export class AuthenticateService {
       if(client && client.token)
        {
         localStorage.setItem('currentClient', JSON.stringify(client.client));
+        localStorage.setItem('client_id',JSON.stringify(client.client._id));
+        console.log(localStorage.getItem('client_id'));
         localStorage.setItem('token', JSON.stringify(client.token));
        
       

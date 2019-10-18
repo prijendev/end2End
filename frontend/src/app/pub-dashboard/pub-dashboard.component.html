@@ -27,7 +27,7 @@
                                   <div class="panel-body"><h4>{{item.project_name}}<span style="color:gray ;padding:10vh;">{{item.skilss}}</span>
                                     <button (click) = "onProjectClick(item._id)" style="float: right ;" class="btn btn-info">
                                       <span class="glyphicon glyphicon-envelope"></span>  view</button></h4></div>
-                                </div>
+                        </div>
                                 
                                 
                         </div>
@@ -40,7 +40,80 @@
                         <div class="card" style="padding:20px 20px 5px 20px;margin-top:20px">
                             
                            
-                            <a href="sendMessage.php" class="btn btn-info"><span class="glyphicon glyphicon-envelope"></span>  Post Project</a>
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCart">New Project</button>
+
+                          <!-- Modal: modalCart -->
+                          <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <!--Header-->
+                                <div class="modal-header" style="background-color:lightblue;">
+                                  <h4 class="modal-title" id="myModalLabel">Post your new project</h4>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                  </button>
+                                </div>
+                                <!--Body-->
+                                <div class="modal-body">
+                          
+                                  <table class="table table-hover">
+                                    <thead>
+                                      <tr>
+                                        <td><label>Name</label></td>
+                                        <td><input type="text" #name></td>
+                                        
+                                      </tr>
+                                    
+                                      <tr>
+                                          <td><label>Discription</label></td>
+                                          <td><textarea rows="4" cols="50" #discription></textarea></td>
+                                      </tr>
+                                      <tr>
+                                        
+                                          <td><label>Required skills</label></td>
+                                          <td><select class="browser-default custom-select" #skills>
+                                              <option selected>Android</option>
+                                              <option value="1">Php,Mysql</option>
+                                               <option value="2">IOS</option>
+                                              <option value="3">Graphic Designing</option>
+                                              <option value="4">Html,css</option>
+                                              <option value="5">Wordpress</option>
+                                              <option value="6">Angular</option>
+                                              <option value="7">.NET</option>
+                                              <option value="8">Python,django</option>
+                                              
+                                            </select></td>
+                                      </tr>
+                                      <tr>
+                                       
+                                          <td><label>Budget</label></td>
+                                          <td><input type="text" #budget></td>
+                                      </tr>
+                                      <tr>
+                                       
+                                          <td><label>Duration</label></td>
+                                          <td><input type="text" #duration></td>
+                                      </tr>
+
+                                      <tr>
+                                       
+                                          <td><label>Time for biding</label></td>
+                                          <td><input type="text" #bidtime></td>
+                                      </tr>
+                                     
+                                    </thead>
+                                  </table>
+                          
+                                </div>
+                                <!--Footer-->
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                                  <button class="btn btn-primary" (click)="onPost(name.value,discription.value,skills.value,budget.value,duration.value,bidtime.value)">Post</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                             <p></p>
                         </div>
 

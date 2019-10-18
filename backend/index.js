@@ -6,7 +6,7 @@ var Project = require('./models/Project');
 var jwt = require('jsonwebtoken');
 var parser = require('body-parser');
 var Bid = require('./models/Bid')
-var alert = require('alert-node');
+
 var app = express();
 
 app.use(parser.json());
@@ -44,14 +44,8 @@ app.post('/register',(req,res)=>{
     
     res.setHeader('Access-Control-Allow-Origin', '*');
 
-    var firstname = req.body.firstname;
-   
-
-    console.log(firstname);
+    console.log(req.body);
     var client = new Client(req.body);
-
-
-    
     client.save((err,result)=>
     {
         if(err)
@@ -85,7 +79,7 @@ app.post('/login',(req,res)=>
             console.log("cliet does not exist");
             console.log(err);
             res.json({
-                "message":'User does not exist'
+                user
                });
             
         }
@@ -111,7 +105,7 @@ app.post('/login',(req,res)=>
             else
             {
                 res.json({
-                       "message":'password is wrong'
+                       password
                       });
                   
             }
@@ -175,6 +169,34 @@ app.post('/project',(req,res)=>{
     });
 });
 
+app.post('/push_project',(req,res)=>{
+    
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    console.log(req.body.duration);
+    console.log(req.body.date);
+    console.log(req.body.bidtime);
+    console.log(req.body.requirement);
+    console.log(req.body.budget);
+    console.log(req.body.skills);
+    console.log(req.body.project_name);
+    
+    console.log(req.body.client_id);
+    var project = new Project(req.body);
+    
+
+    project.save((err,result)=>
+    {
+        if(err)
+        {
+            console.log("There is error in inserting data to database");
+            res.sendStatus(500);
+        }
+        else
+        res.sendStatus(200);
+    });
+
+});
 
 app.post('/prj_all',auth,(req,res)=>
 {
@@ -198,7 +220,7 @@ app.post('/prj_all',auth,(req,res)=>
        {
         console.log(project);
         res.json({
-            project
+            project,client_id
         });
        }
    })

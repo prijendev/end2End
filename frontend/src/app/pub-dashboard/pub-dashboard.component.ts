@@ -4,6 +4,7 @@ import { Project } from '../models/project';
 import { ProjectService } from '../services/project.service';
 import { first } from 'rxjs/operators';
 import { isDefined } from '@angular/compiler/src/util';
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-pub-dashboard',
@@ -15,6 +16,8 @@ import { isDefined } from '@angular/compiler/src/util';
 export class PubDashboardComponent implements OnInit {
 
   project_list:Project
+ 
+  _id:string
   constructor(private prjservice:ProjectService,private router:Router) 
   {
 
@@ -53,4 +56,23 @@ export class PubDashboardComponent implements OnInit {
     this.router.navigate(['/project_view']);
   }
 
+  public onPost(name:string,discription:string,skills:number,budget:number,duration:number,bidtime:number)
+  {
+    console.log('dfgdfgfdgdf');
+    console.log(name+ " " +discription+ " " +skills+ " " +budget+ " " +duration+ " " +bidtime);
+
+    
+    
+
+    //onsole.log(this.project_list1);
+
+    this._id=localStorage.getItem('client_id');
+    var client_id=JSON.parse(this._id);
+    var date=new Date();
+     this.prjservice.pushProject(client_id ,name,discription,skills,date,budget,duration,bidtime)
+    .pipe(first())
+    .subscribe(data=>{
+
+    });  
+  }
 }

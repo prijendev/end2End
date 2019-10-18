@@ -12,6 +12,8 @@ export class ProjectService {
 
   public data:any
   public id:any
+  public project:Project;
+  client_id:string
   private proj : BehaviorSubject<Project>;
   constructor(private http:HttpClient)
    {
@@ -26,9 +28,9 @@ export class ProjectService {
       .pipe(map(project=>{
       if(project)
       {
-       localStorage.setItem('project', JSON.stringify(project.project));
-       //console.log(localStorage.getItem('token'));
-      
+       //slocalStorage.setItem('project', JSON.stringify(project.project));
+       
+        
        this.data=project.project;
       return this.data;
       
@@ -37,9 +39,29 @@ export class ProjectService {
       
      }));
 
-     
+    
     
    }
+
+
+   pushProject(client_id:string, project_name:string,requirement:string,skills:number,date:Date,budget:number,duration:number,bidtime:number)
+   {
+
+    console.log(project_name + " " + requirement  + " " + skills + " " + budget+ " " +duration+ " " +bidtime);
+  
+  
+   return this.http.post<any>(`http://localhost:3000/push_project`,{client_id,project_name,skills,requirement,date,budget,duration,bidtime})
+     .pipe(map(project=>{
+
+      console.log("called");
+      if(project)
+      {
+          this.data=project.project;
+          return this.data;
+      } 
+     }));   
+   }
+
 
    getAllData(tk:string)
   {

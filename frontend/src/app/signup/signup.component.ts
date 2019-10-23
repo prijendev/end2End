@@ -54,7 +54,7 @@ export class SignupComponent implements OnInit
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
-    
+      
   }
 
   get builder()

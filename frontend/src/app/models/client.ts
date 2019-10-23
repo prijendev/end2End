@@ -4,4 +4,5 @@ export class Client
     lastname:string;
     password:string;
     email:string;
+    skills:string;
 }

@@ -1,0 +1,104 @@
+<app-navbar></app-navbar>
+<div style="padding:1% 3% 3% 3%;">    <div class="row" style="padding-top: 8vh; margin-bottom: 8vh;">
+    
+    <!--Column 1-->
+        <div class="col-lg-7">
+    
+    <!--Profile Details-->	
+            <div class="card" style="padding:20px 20px 5px 20px;margin-top:20px">
+                <div class="panel panel-success">
+                  <div class="panel-heading"><h3>Job Offer Details</h3></div>
+                </div>
+                <div class="panel panel-success">
+                  <div class="panel-heading">Job Title</div>
+                  <div class="panel-body"><h4>{{ p_data.project_name }}</h4></div>
+                </div>
+                
+                <div class="panel panel-success">
+                  <div class="panel-heading">Job Description</div>
+                  <div class="panel-body"><h4>{{ p_data.requirement }}</h4></div>
+                </div>
+                <div class="panel panel-success">
+                  <div class="panel-heading">Budget</div>
+                  <div class="panel-body"><h4>{{ p_data.budget }}$</h4></div>
+                </div>
+                <div class="panel panel-success">
+                  <div class="panel-heading">Required Skills</div>
+                  <div class="panel-body"><h4>{{ p_data.skills}}</h4></div>
+                </div>
+                
+                <div class="panel panel-success">
+                  <div class="panel-heading">Deadline</div>
+                  <div class="panel-body"><h4>{{ p_data.duration }}h</h4></div>
+                </div>
+         
+
+                <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modalCart">Bid</button>
+
+                          <!-- Modal: modalCart -->
+                          <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <!--Header-->
+                                <div class="modal-header" style="background-color:lightblue;">
+                                  <h4 class="modal-title" id="myModalLabel">Bid on new project</h4>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                  </button>
+                                </div>
+                                <!--Body-->
+                                <div class="modal-body">
+                          
+                                  <table class="table table-hover">
+                                    <thead>
+                                      <tr>
+                                        <td><label>Name</label></td>
+                                        <td><input type="text" #name></td>
+                                        
+                                      </tr>
+                                    
+                                      <tr>
+                                          <td><label>Your proposal</label></td>
+                                          <td><textarea rows="4" cols="50" #discription></textarea></td>
+                                      </tr>
+                                      
+                                      <tr>
+                                       
+                                          <td><label>Budget</label></td>
+                                          <td><input type="number" placeholder="Enter your budget in $" #budget></td>
+                                      </tr>
+                                      <tr>
+                                       
+                                          <td><label>Duration</label></td>
+                                          <td><input type="number" placeholder="Enter your duration in Days" #duration></td>
+                                      </tr>
+
+                                      <tr>
+                                       
+                                        <td><label>Contact</label></td>
+                                        <td><input type="number" placeholder="Enter your contact no" #contact></td>
+                                    </tr>
+
+                                      
+                                     
+                                    </thead>
+                                  </table>
+                          
+                                </div>
+                                <!--Footer-->
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                                  <button class="btn btn-primary" (click)="onBid(name.value,discription.value,budget.value,duration.value,contact.value)"data-dismiss="modal">Post</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                   
+            </div>
+   
+        </div>
+    </div>
+  </div>
+
+<app-footer></app-footer>

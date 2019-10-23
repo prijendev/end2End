@@ -44,13 +44,13 @@ export class ProjectService {
    }
 
 
-   pushProject(client_id:string, project_name:string,requirement:string,skills:number,date:Date,budget:number,duration:number,bidtime:number)
+   pushProject(client_id:string, project_name:string,requirement:string,skills:string,date:Date,budget:number,duration:number,bidtime:number,contact:number)
    {
 
     console.log(project_name + " " + requirement  + " " + skills + " " + budget+ " " +duration+ " " +bidtime);
   
   
-   return this.http.post<any>(`http://localhost:3000/push_project`,{client_id,project_name,skills,requirement,date,budget,duration,bidtime})
+   return this.http.post<any>(`http://localhost:3000/push_project`,{client_id,project_name,skills,requirement,date,budget,duration,bidtime,contact})
      .pipe(map(project=>{
 
       console.log("called");
@@ -86,4 +86,47 @@ export class ProjectService {
       return "nothing";
      }));
   }
+
+  getBids(project_id:string)
+  {
+   
+    return this.http.post<any>(`http://localhost:3000/getBid`,{project_id})
+      .pipe(map(bid=>{
+      if(bid)
+      {
+
+       return bid.bids;
+      
+      }
+      else
+      {
+        
+      }
+      
+      return "nothing";
+     }));
+  }
+
+
+  grant(project_id:string,bid_id:string,status:string)
+  {
+    
+    return this.http.post<any>(`http://localhost:3000/grant`,{project_id,bid_id,status})
+      .pipe(map(grant=>{
+      if(grant && grant.done)
+      {
+
+       return grant;
+      
+      }
+      else
+      {
+        
+      }
+      
+      return "nothing";
+     }));
+  }
+
+
   }

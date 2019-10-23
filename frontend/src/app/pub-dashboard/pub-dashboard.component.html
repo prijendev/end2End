@@ -1,4 +1,6 @@
-<div class="row">
+<app-navbar></app-navbar>
+<div style="padding:1% 3% 3% 3%;">
+<div class="row" style="padding-top: 8vh;">
 
     <!--Column 1-->
     <div class="col-lg-3">
@@ -13,7 +15,7 @@
                       <div class="panel-body">Nothing to show</div>
                     </div>
                 </div>
-    </div>>
+    </div>
         <div class="col-lg-7">
     
                 
@@ -22,11 +24,14 @@
                                   <div class="panel-heading"><h3>Your project</h3></div>
                                 </div>
                                 <div class="panel panel-primary" *ngFor="let item of project_list ;index as i;">
+                                  
                                   <div class="panel-heading">Project {{i}}<span style="float: right;">{{item.date | date}}</span></div>
                                   
-                                  <div class="panel-body"><h4>{{item.project_name}}<span style="color:gray ;padding:10vh;">{{item.skilss}}</span>
+                                  <div class="panel-body"><h4>{{item.project_name}}<span style="color:gray ;padding:10vh;">{{item.skills}}</span>
                                     <button (click) = "onProjectClick(item._id)" style="float: right ;" class="btn btn-info">
-                                      <span class="glyphicon glyphicon-envelope"></span>  view</button></h4></div>
+                                      <span class="glyphicon glyphicon-eye-open"></span></button></h4></div>
+                                  
+                                
                         </div>
                                 
                                 
@@ -61,45 +66,51 @@
                                     <thead>
                                       <tr>
                                         <td><label>Name</label></td>
-                                        <td><input type="text" #name></td>
+                                        <td><input type="text" #name required></td>
                                         
                                       </tr>
                                     
                                       <tr>
                                           <td><label>Discription</label></td>
-                                          <td><textarea rows="4" cols="50" #discription></textarea></td>
+                                          <td><textarea rows="4" cols="50" #discription required></textarea></td>
                                       </tr>
                                       <tr>
                                         
                                           <td><label>Required skills</label></td>
-                                          <td><select class="browser-default custom-select" #skills>
+                                          <td><select class="browser-default custom-select" multiple #skills>
                                               <option selected>Android</option>
-                                              <option value="1">Php,Mysql</option>
-                                               <option value="2">IOS</option>
-                                              <option value="3">Graphic Designing</option>
-                                              <option value="4">Html,css</option>
-                                              <option value="5">Wordpress</option>
-                                              <option value="6">Angular</option>
-                                              <option value="7">.NET</option>
-                                              <option value="8">Python,django</option>
+                                              <option value="Php,Mysql">Php,Mysql</option>
+                                               <option value="IOS">IOS</option>
+                                              <option value="Graphic Designing">Graphic Designing</option>
+                                              <option value="Html,css">Html,css</option>
+                                              <option value="Wordpress">Wordpress</option>
+                                              <option value="Angular">Angular,node</option>
+                                              <option value="NET">.NET</option>
+                                              <option value="Python,django">Python,django</option>
                                               
                                             </select></td>
                                       </tr>
                                       <tr>
                                        
                                           <td><label>Budget</label></td>
-                                          <td><input type="text" #budget></td>
+                                          <td><input type="number" placeholder="Enter your budget" #budget required></td>
                                       </tr>
                                       <tr>
                                        
                                           <td><label>Duration</label></td>
-                                          <td><input type="text" #duration></td>
+                                          <td><input type="number" required placeholder="Enter maximum time for your project" #duration></td>
                                       </tr>
+                                      
+                                      <tr>
+                                       
+                                        <td><label>Contact</label></td>
+                                        <td><input type="number" required placeholder="Enter your contact no" #contact></td>
+                                    </tr>
 
                                       <tr>
                                        
                                           <td><label>Time for biding</label></td>
-                                          <td><input type="text" #bidtime></td>
+                                          <td><input type="number" required placeholder="Enter deadline to bid on your project" #bidtime></td>
                                       </tr>
                                      
                                     </thead>
@@ -109,7 +120,7 @@
                                 <!--Footer-->
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-                                  <button class="btn btn-primary" (click)="onPost(name.value,discription.value,skills.value,budget.value,duration.value,bidtime.value)"data-dismiss="modal">Post</button>
+                                  <button class="btn btn-primary" (click)="onPost(name.value,discription.value,skills.value,budget.value,duration.value,bidtime.value,contact.value)"data-dismiss="modal">Post</button>
                                 </div>
                               </div>
                             </div>
@@ -133,3 +144,5 @@
                       </div>
         </div>
 </div>
+</div>
+<app-footer></app-footer>

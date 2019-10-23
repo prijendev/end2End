@@ -6,6 +6,8 @@ var Project = require('./models/Project');
 var jwt = require('jsonwebtoken');
 var parser = require('body-parser');
 var Bid = require('./models/Bid')
+var Grant = require('./models/Grant')
+var mailer= require('express-mailer')
 
 var app = express();
 
@@ -46,6 +48,7 @@ app.post('/register',(req,res)=>{
 
     console.log(req.body);
     var client = new Client(req.body);
+    client.skills="";
     client.save((err,result)=>
     {
         if(err)
@@ -122,7 +125,7 @@ app.post('/login',(req,res)=>
 function auth (req,res,next)
 {
     const token=req.body.token;
-    console.log(token);
+    console.log(token + "fdgfdgdfg");
     
     if(!token)
     {
@@ -172,19 +175,10 @@ app.post('/project',(req,res)=>{
 app.post('/push_project',(req,res)=>{
     
     res.setHeader('Access-Control-Allow-Origin', '*');
-
-    console.log(req.body.duration);
-    console.log(req.body.date);
-    console.log(req.body.bidtime);
-    console.log(req.body.requirement);
-    console.log(req.body.budget);
-    console.log(req.body.skills);
-    console.log(req.body.project_name);
-    
     console.log(req.body.client_id);
     var project = new Project(req.body);
     
-
+    project.status="Post";
     project.save((err,result)=>
     {
         if(err)
@@ -197,6 +191,30 @@ app.post('/push_project',(req,res)=>{
     });
 
 });
+
+
+app.post('/push_bid',(req,res)=>{
+    
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    
+    console.log(req.body);
+    
+    var bid = new Bid(req.body);
+    
+    
+    bid.save((err,result)=>
+    {
+        if(err)
+        {
+            console.log("There is error in inserting data to database");
+            res.sendStatus(500);
+        }
+        else
+        res.sendStatus(200);
+    });
+
+});
+
 
 app.post('/prj_all',auth,(req,res)=>
 {
@@ -227,6 +245,100 @@ app.post('/prj_all',auth,(req,res)=>
 
     
 })
+
+
+app.post('/skill_data',auth,(req,res)=>
+{
+    var skills = req.body.skills;
+    
+
+  
+   if(skills == "")
+   {
+       Project.find().exec(function(err,project)
+       {
+           if(err)
+           {
+            res.json({
+                "hiii":"errr"
+            });
+           }
+           else
+           {
+            //console.log(project);
+            res.json({
+                project
+            });
+           }
+       })
+   }
+    else
+    {
+        Project.find({skills:skills}).exec(function(err,project)
+        {
+            if(err)
+            {
+             res.json({
+                 "hiii":"errr"
+             });
+            }
+            else
+            {
+             //console.log(project);
+             res.json({
+                 project
+             });
+            }
+        })
+    }
+   
+
+    
+})
+
+
+app.post('/getBid',(req,res)=>
+{
+    var project_id=req.body.project_id;
+
+    console.log(project_id + 'hiii');
+    Bid.find({project_id:project_id}).exec(function(err,bids)
+    {
+        if(err)
+        console.log("error found to fetch bids")
+        else
+        {
+            console.log(bids);
+            res.json({
+                bids
+            });
+        }
+    })
+})
+
+
+app.post('/grant',(req,res)=>
+{
+    console.log(req.body + 'fdfdfg');
+    var grant = new Grant(req.body);
+    grant.save((err,done)=>
+    {
+        if(err)
+        {
+            console.log("There is error in inserting data to database");
+            res.sendStatus(500);
+        }
+        else
+        {
+            res.json({
+                done
+            })
+        }
+    });
+
+})
+
+
 
 
 app.post('/prj_data',(req,res)=>
@@ -281,6 +393,50 @@ console.log(date_ob);
     });
 });
  
+
+
+app.post('/sk_update',(req,res)=>{
+
+    console.log(req.body);
+    var client_id = req.body.client_id;
+
+   
+    Client.findOne({ _id : client_id }).exec(function(err,client)
+    {
+        if (err) 
+        {
+            console.log("Error");
+        }
+        else if (!client) 
+        {
+            
+            console.log("project does not exist");
+            console.log(err);
+        }
+        else
+        {
+             client.updateOne({skills:req.body.skills}).exec(function(err,update)
+             {
+                if (err) 
+                {
+                    console.log("Error");
+                }
+                else
+                {
+                    res.json({
+                        update
+                    })
+                }       
+             });
+
+         
+         }
+          
+    });
+
+});
+
+
 app.listen(app.get('port'),function(req,res){
     console.log("Server running on port ",app.get('port'));
 });

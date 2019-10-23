@@ -7,15 +7,17 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a [routerLink]="['/home']" routerLinkActive="router-link-active" class="navbar-brand">Freelance Marketplace</a>
+			<!-- <a [routerLink]="['/home']" routerLinkActive="router-link-active" class="navbar-brand"> --><img src="../../assets/logo.png" class="navbar-brand" style="width: 11vw;height: 10vh;"><!-- </a> -->
 		</div>
 		<div class="collapse navbar-collapse" id="navbar-collapse">
-			<a [routerLink]="['/signup']" routerLinkActive="router-link-active" class="btn btn-info navbar-btn navbar-right">Register</a>
+			<a [routerLink]="['/signup']" routerLinkActive="router-link-active" *ngIf="!islogin">Login</a>
+			
 			<ul class="nav navbar-nav navbar-right">
 				<li><a [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a></li>
-				<li><a href="#how">How it works</a></li>
-				<li><a href="#faq">FAQ</a></li>
-				<li><a [routerLink]="['/signup']" routerLinkActive="router-link-active">Login</a></li>
+				<li><a [routerLink]="['/home']" routerLinkActive="router-link-active" *ngIf="islogin">{{flag}}</a></li>
+				<!-- <li><a href="#how">How it works</a></li>
+				<li><a href="#faq">FAQ</a></li> -->
+				<li><button (click)="onLogout()" class="btn navbar-btn"  *ngIf="islogin">Logout</button></li>
 			</ul>
 		</div>		
 	</div>	

@@ -7,9 +7,11 @@ var schema = moongose.Schema(
       skills  : {type:String},
       requirement : {type:String},
       date  : {type:Date},
+      contact:{type:Number},
       budget : {type:Number},
       duration  : {type:Number},
-      bidtime:{type:Number}
+      bidtime:{type:Number},
+      status:{type:String},
     }
 )
 

@@ -7,6 +7,7 @@ export class Project
       requirement :String
       date  : Date
       budget : Number
+      contact:number
       duration  : Number
       bidtime:Number
 }

@@ -1,3 +1,5 @@
+import { EmpProjectComponent } from './emp-project/emp-project.component';
+import { EmpDashboardComponent } from './emp-dashboard/emp-dashboard.component';
 import { PubDashboardComponent } from './pub-dashboard/pub-dashboard.component';
 import { ProjectViewComponent } from './project-view/project-view.component';
 import { SignupComponent } from './signup/signup.component';
@@ -10,6 +12,8 @@ const routes: Routes = [
   {path:'signup',component:SignupComponent},
   {path:'publisher',component:PubDashboardComponent},
   {path:'project_view',component:ProjectViewComponent},
+  {path:'employeer',component:EmpDashboardComponent},
+  {path:'emp_view',component:EmpProjectComponent},
   {
     path: 'home',
     component:HomeComponent,

@@ -1,3 +1,4 @@
+import { AuthenticateService } from './../services/authenticate.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Project } from '../models/project';
@@ -18,7 +19,7 @@ export class PubDashboardComponent implements OnInit {
   project_list:Project
  
   _id:string
-  constructor(private prjservice:ProjectService,private router:Router) 
+  constructor(private prjservice:ProjectService,private router:Router,private authservice:AuthenticateService) 
   {
 
     this.prjservice.getAllData(localStorage.getItem('token'))
@@ -27,11 +28,17 @@ export class PubDashboardComponent implements OnInit {
 
       if(data)
       {
+        this.authservice.islogin=true;
+        this.authservice.flag=JSON.parse(localStorage.getItem('name'));
         this.project_list=data
         console.log(this.project_list);
       }
       else
-      this.router.navigate(['/signup']);
+      {
+        localStorage.removeItem('name');
+        this.router.navigate(['/signup']);
+      }
+      
       
 
       
@@ -56,7 +63,7 @@ export class PubDashboardComponent implements OnInit {
     this.router.navigate(['/project_view']);
   }
 
-  public onPost(name:string,discription:string,skills:number,budget:number,duration:number,bidtime:number)
+  public onPost(name:string,discription:string,skills:string,budget:number,duration:number,bidtime:number,contact:number)
   {
     console.log('dfgdfgfdgdf');
     console.log(name+ " " +discription+ " " +skills+ " " +budget+ " " +duration+ " " +bidtime);
@@ -69,7 +76,7 @@ export class PubDashboardComponent implements OnInit {
     this._id=localStorage.getItem('client_id');
     var client_id=JSON.parse(this._id);
     var date=new Date();
-     this.prjservice.pushProject(client_id ,name,discription,skills,date,budget,duration,bidtime)
+     this.prjservice.pushProject(client_id ,name,discription,skills,date,budget,duration,bidtime,contact)
     .pipe(first())
     .subscribe(data=>{
 

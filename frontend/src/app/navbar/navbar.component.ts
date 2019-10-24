@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
       this.islogin=true;
     }
     else
-    this.islogin=this.service.islogin;
+    this.islogin=false;
   }
 
   ngOnInit()
@@ -32,14 +32,14 @@ export class NavbarComponent implements OnInit {
     if(this.service.flag)
     {
       this.flag=this.service.flag;
-      this.islogin=this.service.islogin;
+  
     }
   }
 
   public onLogout()
   {
     this.islogin=false;
-    localStorage.setItem('token',localStorage.getItem('name'));
+    localStorage.setItem('token',localStorage.getItem('client_id'));
     localStorage.removeItem('name');
     
     

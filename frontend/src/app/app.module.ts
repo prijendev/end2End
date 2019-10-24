@@ -12,7 +12,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { ProjectViewComponent } from './project-view/project-view.component';
 import { EmpDashboardComponent } from './emp-dashboard/emp-dashboard.component';
 import { PubDashboardComponent } from './pub-dashboard/pub-dashboard.component';
-import { EmpProjectComponent } from './emp-project/emp-project.component'
+import { EmpProjectComponent } from './emp-project/emp-project.component';
+import { ProfileComponent } from './profile/profile.component'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { EmpProjectComponent } from './emp-project/emp-project.component'
    
     PubDashboardComponent,
    
-    EmpProjectComponent
+    EmpProjectComponent,
+   
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

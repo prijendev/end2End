@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
 * {
 	box-sizing: border-box;
@@ -99,7 +100,7 @@ input {
 	top: 10vh;
 	left: 33vw;
 	max-width: 100%;
-	min-height: 480px;
+	min-height:515px;
 }
 @media (min-width: 320px) and (max-width: 480px) {
   

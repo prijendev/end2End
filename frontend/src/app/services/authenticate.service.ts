@@ -11,7 +11,8 @@ export class AuthenticateService {
 
   private clientsubject : BehaviorSubject<Client>;
   private observer : Observable<Client>;
-  public data: any;
+  public data:any;
+  public data1: Client;
   public flag:any;
   public islogin:any
   constructor(private http:HttpClient)
@@ -19,6 +20,7 @@ export class AuthenticateService {
       this.clientsubject=new BehaviorSubject<Client>(JSON.parse(localStorage.getItem('client_id')));
       this.observer=this.clientsubject.asObservable();
       this.islogin=false;
+     
 
    }
 
@@ -39,7 +41,7 @@ export class AuthenticateService {
        {
         //localStorage.setItem('currentClient', JSON.stringify(client.client));
         localStorage.setItem('client_id',JSON.stringify(client.client._id));
-        localStorage.setItem('skills',JSON.stringify(client.client.skills));
+        localStorage.setItem('client1',JSON.stringify(client.client));
         //alert(localStorage.getItem('skills'));
         //alert(localStorage.getItem('skills'));
         console.log(localStorage.getItem('client_id'));
@@ -50,8 +52,8 @@ export class AuthenticateService {
         this.islogin=true;
         this.clientsubject.next(client);
         
-        this.data=JSON.stringify(client.client);
-      return this.data;
+        this.data1=client.client;
+      return this.data1;
       }
       
       return "not get any data";

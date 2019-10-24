@@ -14,7 +14,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private router:Router) 
   {
-
+    if(localStorage.getItem('token') == null)
+    localStorage.setItem('token',localStorage.getItem('client_id'));
    }
 
   ngOnInit() {

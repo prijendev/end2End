@@ -1,3 +1,4 @@
+import { ProfileComponent } from './profile/profile.component';
 import { EmpProjectComponent } from './emp-project/emp-project.component';
 import { EmpDashboardComponent } from './emp-dashboard/emp-dashboard.component';
 import { PubDashboardComponent } from './pub-dashboard/pub-dashboard.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path:'project_view',component:ProjectViewComponent},
   {path:'employeer',component:EmpDashboardComponent},
   {path:'emp_view',component:EmpProjectComponent},
+  {path:'profile',component:ProfileComponent},
   {
     path: 'home',
     component:HomeComponent,

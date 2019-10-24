@@ -7,7 +7,7 @@ var jwt = require('jsonwebtoken');
 var parser = require('body-parser');
 var Bid = require('./models/Bid')
 var Grant = require('./models/Grant')
-var mailer= require('express-mailer')
+var mail= require('nodemailer')
 
 var app = express();
 
@@ -253,8 +253,7 @@ app.post('/skill_data',auth,(req,res)=>
     
 
   
-   if(skills == "")
-   {
+ 
        Project.find().exec(function(err,project)
        {
            if(err)
@@ -271,26 +270,8 @@ app.post('/skill_data',auth,(req,res)=>
             });
            }
        })
-   }
-    else
-    {
-        Project.find({skills:skills}).exec(function(err,project)
-        {
-            if(err)
-            {
-             res.json({
-                 "hiii":"errr"
-             });
-            }
-            else
-            {
-             //console.log(project);
-             res.json({
-                 project
-             });
-            }
-        })
-    }
+ 
+  
    
 
     
@@ -316,9 +297,27 @@ app.post('/getBid',(req,res)=>
     })
 })
 
+/* var transporter = mail.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'prijenkhokhani58@gmail.com',
+      pass: 'success776655'
+    }
+  }); */
+
+
 
 app.post('/grant',(req,res)=>
 {
+
+    /* var mailOptions = {
+        from: 'prijenkhokhani58@gmail.com',
+        to: 'prijenkhokhani58@gmail.com',
+        subject: 'conformation mail',
+        html: '<h4>Project has been Granted</h4>'
+      }; */
+
+
     console.log(req.body + 'fdfdfg');
     var grant = new Grant(req.body);
     grant.save((err,done)=>
@@ -330,6 +329,15 @@ app.post('/grant',(req,res)=>
         }
         else
         {
+
+            /* transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                }
+              }); */
+
             res.json({
                 done
             })

@@ -101,7 +101,7 @@ export class SignupComponent implements OnInit
     .subscribe(data=>{
       console.log(data);
       //navigate
-      console.log(data);
+      //console.log(data);
       this.router.navigate([this.returnUrl]);
     },error =>{
       //alert message;

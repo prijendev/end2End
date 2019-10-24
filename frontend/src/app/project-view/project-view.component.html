@@ -47,12 +47,12 @@
                   <div class="panel-heading"><h3>Applicants for this job</h3></div>
                   <div class="panel-body"><h4>
                       <table style="width:100%">
-                      <tr  *ngFor="let item of bid_list ;index as i;">
-                          <td>{{item.client_name}}</td>
+                      <tr  class="panel-heading" *ngFor="let item of bid_list ;index as i;" >
+                          <td >{{item.client_name}}</td>
                           <td>
                           {{item.rating}}
                           
-                          </td>
+                          </td> 
                           
                          <td>
                             

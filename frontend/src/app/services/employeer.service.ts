@@ -49,7 +49,7 @@ export class EmployeerService {
   bidOnProject(client_id:string ,project_id:string,client_name:string,
     rating:number,proposal:string,date:Date,budget:number,duration:number,contact:number)
   {
-    alert("service called");
+    alert("You have succefully bid on project");
     return this.http.post<any>(`http://localhost:3000/push_bid`,{client_id ,project_id,
                                                                 client_name,rating,proposal,
                                                                 date,budget,duration,contact})

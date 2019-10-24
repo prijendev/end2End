@@ -53,7 +53,7 @@ export class EmpDashboardComponent implements OnInit {
   onSkills(skill:string)
   {
     this.client_id=JSON.parse(localStorage.getItem('client_id'));
-    this.empservice.updateSkills(skill,this.client_id);
+    //this.empservice.updateSkills(skill,this.client_id);
     //alert(this.client_id);
   }
 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, first } from 'rxjs/operators';
 import { Project } from '../models/project';
 
 @Injectable({
@@ -37,12 +37,12 @@ export class EmployeerService {
      }));
   }
 
-  updateSkills(skills:string,client_id:string)
+  updateUser(_id:number,company:string,firstname:string,lastname:string,email:string,contact:string,address:string)
   {
-    alert(skills);
-    return this.http.post<any>(`http://localhost:3000/sk_update `,{skills ,client_id})
+    //alert(company);
+    return this.http.post<any>(`http://localhost:3000/us_update `,{_id,company,firstname,lastname,email,contact,address})
     .pipe(map(project=>{
-    alert("updated");
+    //alert("updated");
     }));
   }
 

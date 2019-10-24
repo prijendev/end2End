@@ -403,13 +403,13 @@ console.log(date_ob);
  
 
 
-app.post('/sk_update',(req,res)=>{
+app.post('/us_update',(req,res)=>{
 
     console.log(req.body);
-    var client_id = req.body.client_id;
+    var client_id = req.body._id;
 
    
-    Client.findOne({ _id : client_id }).exec(function(err,client)
+    Client.findOne({ _id :req.body._id }).exec(function(err,client)
     {
         if (err) 
         {
@@ -423,7 +423,12 @@ app.post('/sk_update',(req,res)=>{
         }
         else
         {
-             client.updateOne({skills:req.body.skills}).exec(function(err,update)
+             client.updateOne({firstname:req.body.firstname,
+                                company:req.body.company,
+                                lastname:req.body.lastname,
+                                email:req.body.email,
+                               contact:req.body.contact,
+                            address:req.body.address }).exec(function(err,update)
              {
                 if (err) 
                 {

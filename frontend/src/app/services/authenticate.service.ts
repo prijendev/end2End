@@ -41,7 +41,7 @@ export class AuthenticateService {
        {
         //localStorage.setItem('currentClient', JSON.stringify(client.client));
         localStorage.setItem('client_id',JSON.stringify(client.client._id));
-        localStorage.setItem('client1',JSON.stringify(client.client));
+        localStorage.setItem('client',JSON.stringify(client.client));
         //alert(localStorage.getItem('skills'));
         //alert(localStorage.getItem('skills'));
         console.log(localStorage.getItem('client_id'));

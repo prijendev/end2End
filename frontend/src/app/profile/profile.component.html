@@ -9,17 +9,92 @@
                                        
                                         <img src="../../assets/img04.jpg">
                                         
-                                        <p><span class="glyphicon glyphicon-user"></span></p>
-                                       <a href="sendMessage.php" class="btn btn-info"><span class="glyphicon glyphicon-envelope"></span>  Send Message</a>
-                                        <p></p>
+                                        
+                                       
+                                       
+                                       
                                     </div>
             </div> 
             <div class="col-lg-7">
 
                     <!--Employer Profile Details-->	
                             <div class="card" style="padding:20px 20px 5px 20px;margin-top:20px">
+                              
+                                <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <!--Header-->
+                                    <div class="modal-header" style="background-color:lightblue;">
+                                      <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                      </button>
+                                    </div>
+                                    <!--Body-->
+                                    <div class="modal-body">
+                              
+                                      <table class="table table-hover">
+                                        <thead>
+                                          <tr>
+                                            <td><label>Company Name</label></td>
+                                            <td><input type="text" #cname required></td>
+                                            
+                                          </tr>
+                                          <tr>
+                                              <td><label>First Name</label></td>
+                                              <td><input type="text" #fname required></td>
+                                              
+                                            </tr>
+                                            <tr>
+                                                <td><label>Last Name</label></td>
+                                                <td><input type="text" #lname required></td>
+                                                
+                                              </tr>
+                                         
+                                          <tr>
+                                           
+                                              <td><label>Email</label></td>
+                                              <td><input type="email" #email  required></td>
+                                          </tr>
+                                          
+                                          <tr>
+                                           
+                                            <td><label>Contact</label></td>
+                                            <td><input type="number"  #contact></td>
+                                        </tr>
+    
+                                          <tr>
+                                           
+                                              <td><label>Address</label></td>
+                                              <td><input type="text" #address></td>
+                                          </tr>
+                                         
+                                        </thead>
+                                      </table>
+                              
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                                        <button class="btn btn-primary" (click)="onEdit(cname.value,fname.value,lname.value,email.value,contact.value,address.value)"data-dismiss="modal">Edit</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                                 <div class="panel panel-primary">
-                                  <div class="panel-heading"><h3>Profile Details</h3></div>
+                                  <div class="panel-heading"><h3>Profile Details
+                                      <button  class="btn btn-warning" style="margin-left:53%;" data-toggle="modal" data-target="#modalCart">Edit</button>
+
+                                      
+                                          <!--Footer-->
+                                          
+                                    
+
+
+                                      <button class="btn btn-danger" style="float: right;">Delete</button >
+                                  </h3>
+                                    
+                                  </div>
                                 </div>
                                 <div class="panel panel-primary">
                                   <div class="panel-heading">Company Name</div>
@@ -33,17 +108,18 @@
                                   <div class="panel-heading">Lastname</div>
                                   <div class="panel-body"><h4>{{ lastname}}</h4></div>
                                 </div>
+                               
                                 <div class="panel panel-primary">
                                   <div class="panel-heading">Email</div>
-                                  <div class="panel-body"><h4>{{ email}}</h4></div>
+                                  <div class="panel-body"><h4>{{email1}}</h4></div>
                                 </div>
                                 <div class="panel panel-primary">
                                         <div class="panel-heading">Contact</div>
-                                        <div class="panel-body"><h4>{{ contact}}</h4></div>
+                                        <div class="panel-body"><h4>{{contact1}}</h4></div>
                                 </div>
                                 <div class="panel panel-primary">
                                      <div class="panel-heading">Address</div>
-                                      <div class="panel-body"><h4>{{ address}}</h4></div>
+                                      <div class="panel-body"><h4>{{address1}}</h4></div>
                                  </div>
                             </div>
                     <!--End Employer Profile Details-->

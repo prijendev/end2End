@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="panel panel-primary" *ngFor="let item of project_list ;index as i;">
                                   
-                                  <div class="panel-heading">Project {{i}}<span style="float: right;">{{item.date | date}}</span></div>
+                                  <div class="panel-heading">Project {{i+1}}<span style="float: right;">{{item.date | date}}</span></div>
                                   
                                   <div class="panel-body"><h4>{{item.project_name}}<span style="color:gray ;padding:10vh;">{{item.skills}}</span>
                                     <button (click) = "onProjectClick(item._id)" style="float: right ;" class="btn btn-info">
@@ -139,7 +139,7 @@
                           
                           <div class="panel panel-primary">
                             <div class="panel-heading">Project 5</div>
-                            <div class="panel-body">18/01/2018</div>
+                            <div class="panel-body">11/06/2018</div>
                           </div>
                       </div>
         </div>
